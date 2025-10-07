@@ -1,6 +1,6 @@
-# HomeKey - Real Estate Property Brief Generator
+# HomeKey: PropertyIQ - Smart Property Intelligence
 
-A full-stack application that aggregates scattered real estate property information into clear, AI-powered property insights.
+A full-stack application that aggregates scattered real estate property information into clear, AI-powered insights to help buyers make confident decisions.
 
 ## Running the Project
 
