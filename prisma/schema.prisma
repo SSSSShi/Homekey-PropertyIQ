@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id          String   @id @default(cuid())
+  address     String   @unique
+  city        String
+  state       String
+  zipCode     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  snapshots   PropertySnapshot[]
+}
+
+model PropertySnapshot {
+  id              String   @id @default(cuid())
+  propertyId      String
+  property        Property @relation(fields: [propertyId], references: [id])
+
+  // Basic property info
+  bedrooms        Int?
+  bathrooms       Float?
+  squareFeet      Int?
+  yearBuilt       Int?
+  propertyType    String?
+  estimatedValue  Float?
+
+  // School data
+  elementarySchool String?
+  elementaryRating Float?
+  middleSchool     String?
+  middleRating     Float?
+  highSchool       String?
+  highRating       Float?
+
+  // Crime data
+  crimeRate        Float?
+  crimeLevel       String?
+
+  // Amenities
+  nearbyParks      Int?
+  transitScore     Int?
+  walkScore        Int?
+
+  // Data quality
+  dataConfidence   Float   // 0-1 score
+  lastUpdated      DateTime @default(now())
+
+  @@index([propertyId])
+}
+
+model DataSource {
+  id          String   @id @default(cuid())
+  name        String
+  type        String
+  lastCached  DateTime
+  cacheData   String   // JSON string
+}
