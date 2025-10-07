@@ -2,6 +2,12 @@
 
 A full-stack application that aggregates scattered real estate property information into clear, AI-powered insights to help buyers make confident decisions.
 
+## Demo Screenshots
+
+![Search Interface](./public/demo/demo_ai.png)
+![Property Brief](./public/demo/demo_property.png)
+![Data Quality](./public/demo/demo_details.png)
+
 ## Running the Project
 
 ```bash
