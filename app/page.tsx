@@ -4,10 +4,14 @@ import { useState } from 'react';
 import { PropertyBrief } from '@/components/PropertyBrief';
 import type { AggregatedPropertyData } from '@/lib/services/propertyAggregator';
 
+interface PropertyDataWithAI extends AggregatedPropertyData {
+  aiSummary?: string;
+}
+
 export default function Home() {
   const [address, setAddress] = useState('');
   const [loading, setLoading] = useState(false);
-  const [propertyData, setPropertyData] = useState<AggregatedPropertyData | null>(null);
+  const [propertyData, setPropertyData] = useState<PropertyDataWithAI | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async (e: React.FormEvent) => {

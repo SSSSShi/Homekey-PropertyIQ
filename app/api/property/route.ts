@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { aggregatePropertyData } from '@/lib/services/propertyAggregator';
+import { generatePropertySummary } from '@/lib/services/aiSummary';
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,7 +16,13 @@ export async function GET(request: NextRequest) {
 
     const propertyData = await aggregatePropertyData(address);
 
-    return NextResponse.json(propertyData);
+    // Generate AI summary in parallel with data aggregation
+    const aiSummary = await generatePropertySummary(propertyData);
+
+    return NextResponse.json({
+      ...propertyData,
+      aiSummary,
+    });
   } catch (error) {
     console.error('Error fetching property data:', error);
     return NextResponse.json(
