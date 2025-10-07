@@ -119,7 +119,3 @@ homekey/
 - Microservices for each data source
 - Rate limiting and authentication
 - Websockets for real-time property updates
-
----
-
-**Built in 2 hours** as a technical assessment demonstrating full-stack development, API integration, AI augmentation, and product thinking.
